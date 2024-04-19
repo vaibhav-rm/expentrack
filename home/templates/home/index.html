@@ -34,19 +34,32 @@
     </div>
   </div>
   <h3>History</h3>
-  <ul id="list" class="list"></ul>
+  <ul id="list" class="list">
+    {% for entry in entries %}
+    {% if entry.amount > 0 %}
+    <li class="plus">
+      {{ entry.desc }} <span>{{ entry.amount }}</span><button class="delete-btn"><i class="fa fa-times"></i></button>
+    </li>
+    {% else %}
+    <li class="minus">
+      {{ entry.desc }} <span>{{ entry.amount }}</span><button class="delete-btn"><i class="fa fa-times"></i></button>
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
   <h3>Add new transaction</h3>
-  <form id="form">
+  <form id="form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="form-control">
       <label for="text">Description</label>
-      <input type="text" id="text" placeholder="Enter description..." />
+      <input type="text" id="text" name="desc" placeholder="Enter description..." />
     </div>
     <div class="form-control">
       <label for="amount"
         >Amount <br />
         <small>(-100 = expense, 100 = income)</small></label
       >
-      <input type="number" id="amount" placeholder="Enter amount..." />
+      <input type="number" id="amount" name="amount" placeholder="Enter amount..." />
     </div>
     <button class="btn">Add transaction</button>
   </form>
