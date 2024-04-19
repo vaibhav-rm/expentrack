@@ -20,17 +20,17 @@
     />
     <div class="balance-container">
       <h2>Your Balance</h2>
-      <h2 id="balance" class="balance">$0.00</h2>
+      <h2 id="balance" class="balance">₹{{ balance.balance }}</h2>
     </div>
   </div>
   <div class="inc-exp-container">
     <div>
       <h4>Income</h4>
-      <p id="money-plus" class="money plus">+$0.00</p>
+      <p id="money-plus" class="money plus">+₹{{ balance.income }}</p>
     </div>
     <div>
       <h4>Expenses</h4>
-      <p id="money-minus" class="money minus">-$0.00</p>
+      <p id="money-minus" class="money minus">-₹{{ balance.expense }}</p>
     </div>
   </div>
   <h3>History</h3>
@@ -38,11 +38,11 @@
     {% for entry in entries %}
     {% if entry.amount > 0 %}
     <li class="plus">
-      {{ entry.desc }} <span>{{ entry.amount }}</span><button class="delete-btn"><i class="fa fa-times"></i></button>
+      {{ entry.desc }} <span>{{ entry.amount }}</span><button class="delete-btn" onclick="location.href = '/delete-entry/{{ entry.id }}';"><i class="fa fa-times"></i></button>
     </li>
     {% else %}
     <li class="minus">
-      {{ entry.desc }} <span>{{ entry.amount }}</span><button class="delete-btn"><i class="fa fa-times"></i></button>
+      {{ entry.desc }} <span>{{ entry.amount }}</span><button class="delete-btn" onclick="location.href = '/delete-entry/{{ entry.id }}';"><i class="fa fa-times"></i></button>
     </li>
     {% endif %}
     {% endfor %}
