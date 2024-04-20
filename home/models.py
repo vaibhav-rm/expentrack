@@ -1,13 +1,17 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.contrib.auth.models import User
 
 # Create your models here.
 class History(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank = True)
     desc = models.CharField(max_length=20)
     amount = models.IntegerField()
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 class Balance(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null = True, blank = True)
     balance = models.IntegerField(default=0)
     income = models.IntegerField(default=0)
     expense = models.IntegerField(default=0)
