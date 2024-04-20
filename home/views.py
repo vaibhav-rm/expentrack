@@ -21,6 +21,12 @@ def index(request):
     context = {'entries':queryset, 'balance':queryset1}
     return render(request, "home/index.html", context)
 
+def login_page(request):
+    return render(request, 'home/login.html')
+
+def register_page(request):
+    return render(request, 'home/register.html')
+
 def delete_entry(request, id):
     history_entry = History.objects.get(id=id)
     amount_to_delete = history_entry.amount

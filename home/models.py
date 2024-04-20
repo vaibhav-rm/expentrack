@@ -19,8 +19,8 @@ class Balance(models.Model):
 @receiver(post_save, sender=History)
 def update_balance(sender, instance, created, **kwargs):
     history = instance
-    if created:  # Only update balance on new History instances
-        balance, _ = Balance.objects.get_or_create(id=1)  # Assuming there's only one Balance object
+    if created: 
+        balance, _ = Balance.objects.get_or_create(id=1) 
         balance.balance += history.amount
         if history.amount > 0:
             balance.income += history.amount
