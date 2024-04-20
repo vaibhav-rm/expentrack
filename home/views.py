@@ -16,7 +16,7 @@ def index(request):
         )
         #update_balance(sender=History, instance=history, created=True)
         return redirect('/')
-    queryset = History.objects.all()
+    queryset = History.objects.all().order_by('-id')[:5]
     queryset1 = Balance.objects.last()
     context = {'entries':queryset, 'balance':queryset1}
     return render(request, "home/index.html", context)
