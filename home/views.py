@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 
@@ -27,7 +28,28 @@ def index(request):
     return render(request, "home/index.html", context)
 
 def login_page(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+
+        if not User.objects.filter(username = username).exists():
+            messages.error(request, 'Invalid username')
+            return redirect('/login/')
+        
+        user = authenticate(username = username, password = password)
+        
+        if user is None:
+            messages.error(request, 'Invalid password')
+            return redirect('/login/')
+        else:
+            login(request, user)
+            return redirect('/')
+        
     return render(request, 'home/login.html')
+
+def logout_page(request):
+    logout(request)
+    return('/login/')
 
 def register_page(request):
 

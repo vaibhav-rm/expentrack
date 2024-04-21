@@ -7,6 +7,7 @@
 {% block head %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'styles.css' %}">
+<link rel="stylesheet" href="{% static 'messages.css' %}">
 <style>
 
 .container {
@@ -45,6 +46,18 @@ body {
         <form class="login-form" action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <h2>Welcome Back!</h2>
+            <hr>
+        {% if messages %}
+        {% for message in messages %}
+        <label class="alert">
+            <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+            <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+              <span class="alertClose">X</span>
+              <span class="alertText">{{ message }} <br class="clear"/></span>
+            </div>
+          </label>
+        {% endfor %}
+        {% endif %}
             <div class="input-group">
                 <input type="text" id="username" name="username" placeholder="Username" required>
             </div>
