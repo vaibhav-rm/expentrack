@@ -49,7 +49,7 @@ def login_page(request):
 
 def logout_page(request):
     logout(request)
-    return('/login/')
+    return redirect('/login/')
 
 def register_page(request):
 
