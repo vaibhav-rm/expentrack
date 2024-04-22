@@ -34,16 +34,6 @@
     min-height: 100vh;
 }
 
-.flexcontain {
-    display: flex;
-  flex-direction: column; /* Ensures vertical alignment */
-  align-items: flex-start; /* Aligns items at the start */
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 0;
-}
 
 
 </style>
@@ -52,7 +42,6 @@
 
 {% block body %}
 
-<div class ="flexcontain">
 <div class="reg logindeiv">
     <div class="container">
         <img src="{% static 'logo.png' %}" alt="Logo" class="logo">
@@ -82,7 +71,6 @@
             <p class="signup-link">Don't have an account? <a href="/register/">Sign up</a></p>
         </form>
     </div>
-</div>
 </div>
 
 
