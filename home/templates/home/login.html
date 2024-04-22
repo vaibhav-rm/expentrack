@@ -11,10 +11,11 @@
 <style>
 
 .container {
+    background-color: #f8f9fa;
   width: 100%;
   max-width: 360px;
   padding: 30px;
-  background-color: #fff;
+  margin: 0%; 
   border-radius: 8px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -23,15 +24,25 @@
   align-items: center;
 }
 
-body {
+ .logindeiv {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+}
+
+.flexcontain {
+    display: flex;
+  flex-direction: column; /* Ensures vertical alignment */
+  align-items: flex-start; /* Aligns items at the start */
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
 }
 
 
@@ -41,6 +52,8 @@ body {
 
 {% block body %}
 
+<div class ="flexcontain">
+<div class="reg logindeiv">
     <div class="container">
         <img src="{% static 'logo.png' %}" alt="Logo" class="logo">
         <form class="login-form" action="" method="post" enctype="multipart/form-data">
@@ -69,7 +82,8 @@ body {
             <p class="signup-link">Don't have an account? <a href="/register/">Sign up</a></p>
         </form>
     </div>
-
+</div>
+</div>
 
 
 

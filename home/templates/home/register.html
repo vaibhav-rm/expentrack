@@ -10,9 +10,8 @@
 <link rel="stylesheet" href="{% static 'messages.css' %}">
 
 <style>
-    body {
+    .registerdiv {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
     display: flex;
@@ -39,6 +38,7 @@
 {% endblock %}
 
 {% block body %}
+<div class="registerdiv reg">
 <div class="container">
     <img src="{% static 'logo.png' %}" alt="Logo" class="logo">
     <form class="register-form" action="" method="post" enctype="multipart/form-data">
@@ -69,5 +69,6 @@
         <button type="submit">Register</button>
         <p class="login-link">Already have an account? <a href="/login/">Login</a></p>
     </form>
+</div>
 </div>
 {% endblock %}

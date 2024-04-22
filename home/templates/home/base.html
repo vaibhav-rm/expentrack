@@ -1,7 +1,161 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 	<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% block title %}{% endblock %}</title>
+    <style>
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    padding: 0%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5%;
+    align-items: center;
+    background: #18283B;
+    margin-bottom: 100px;
+}
+
+.logo {
+    color: #FFF;
+    font-size: 22px;
+    margin-top: 30px;
+}
+
+ul {
+    list-style: none;
+    margin-bottom: 0%;
+}
+
+ul li {
+    display: inline-block;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #8291A5;
+    padding: 8px 30px;
+    border-radius: 7px;
+    transition: all .3s ease;
+}
+
+ul li a:hover,
+ul li a.active {
+    color: #FFF;
+    background: #0075FF;
+}
+
+.logout:hover {
+    color: #FFF;
+    background: #D12322;
+}
+
+#icon {
+    background-color: #0075FF;
+    padding: 5px 7px 3px 7px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease;
+    margin-bottom: 0%;
+}
+
+#icon svg {
+    color: #FFF;
+    height: 28px;
+    transition: all .3s ease;
+}
+
+#icon:hover {
+    background: #FFF;
+}
+
+#icon:hover svg {
+    color: #0075FF;
+}
+
+#checkbox,
+#icon {
+    display: none;
+}
+/* Youtube link */
+.link {
+    position: fixed;
+    background-color: #D12322;
+    padding: 23px 40px;
+    right: -100px;
+    border-radius: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    transform: rotate(-90deg);
+    font-size: 18px;
+    font-weight: 500;
+    color: #FFF;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .1s ease-in-out;
+}
+
+.link i {
+    padding-left: 7px;
+}
+
+.link:hover {
+    text-decoration: underline;
+    background-color: black;
+}
+@media screen and (max-width: 768px) {
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    nav {
+        border-bottom: 1px solid #455468;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul {
+        position: absolute;
+        width: 100%;
+        height: calc(100vh - 71px);
+        background-color: #18283B;
+        left: 0;
+        top: 0;
+        text-align: center;
+        display: none;
+        margin-top: 71px;
+    }
+
+    ul li {
+        display: block;
+        padding: 10px 15px;
+    }
+
+    ul li a {
+        display: block;
+        padding: 10px 0;
+    }
+
+    #icon {
+        display: block;
+    }
+
+    #checkbox:checked~ul {
+        display: block;
+    }
+}
+
+    </style>
     {% block head %}
     {% endblock %}
 	  <meta charset="UTF-8">
@@ -9,9 +163,23 @@
   <meta name="description" content="Recipe App">
   <meta name="author" content="Vaibhav Rathod">
   <meta http-equiv="refresh" content="30">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	</head>
     <body>
+        <nav>
+            <!-- <div class="logo"><img src="{% static 'logo.png' %}" height="90px" width="120px"></div> -->
+            <div class="logo">EnpenTrack</div>
+            <input type="checkbox" id="checkbox">
+            <label for="checkbox" id="icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </label>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Project</a></li>
+                <li><a href="#">Histiry</a></li>
+                <li><a href="/logout/" class="logout">Logout</a></li>
+            </ul>
+        </nav>
         {% block body %}
 		{% endblock %}
     </body>
