@@ -176,8 +176,12 @@ ul li a.active {
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Project</a></li>
-                <li><a href="#">Histiry</a></li>
+                <li><a href="/history/">History</a></li>
+            {% if request.user.is_authenticated %}
                 <li><a href="/logout/" class="logout">Logout</a></li>
+            {% else %}
+                <li><a href="/login/">Login</a></li>
+            {% endif %}
             </ul>
         </nav>
         {% block body %}

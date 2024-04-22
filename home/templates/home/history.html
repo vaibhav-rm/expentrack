@@ -1,0 +1,35 @@
+{% extends "home/base.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+{% load static %}
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+{% endblock %}
+{% block body %}
+
+<div class="flexcontain">
+<h1>History List</h1>   
+<div class="container">
+    {% for month, histories in histories_by_month.items %}
+        <h2>{{ month }}</h2>
+        <ul id="list" class="list historyul">
+            {% for history in histories %}
+            {% if history.amount > 0 %}
+            <li class="plus historyli">
+                {{ history.desc }} ₹{{ history.amount }} {{ history.timestamp }}<i class="fa fa-times"></i></button>
+              </li>
+              {% else %}
+              <li class="minus historyli">
+                {{ history.desc }} ₹    {{ history.amount }} {{ history.timestamp }}<i class="fa fa-times"></i></button>
+              </li>
+              {% endif %}
+                <br>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

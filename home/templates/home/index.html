@@ -35,14 +35,14 @@
     </div>
   </div>
   <h3>History</h3>
-  <ul id="list" class="list">
+  <ul id="list" class="list historyul">
     {% for entry in entries %}
     {% if entry.amount > 0 %}
-    <li class="plus">
+    <li class="plus historyli">
       {{ entry.desc }} <span>{{ entry.amount }}</span><button class="delete-btn" onclick="location.href = '/delete-entry/{{ entry.id }}';"><i class="fa fa-times"></i></button>
     </li>
     {% else %}
-    <li class="minus">
+    <li class="minus historyli">
       {{ entry.desc }} <span>{{ entry.amount }}</span><button class="delete-btn" onclick="location.href = '/delete-entry/{{ entry.id }}';"><i class="fa fa-times"></i></button>
     </li>
     {% endif %}

@@ -4,9 +4,10 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
+@login_required(login_url="/login/")
 def index(request):
     if request.method == "POST":
         data = request.POST
@@ -83,6 +84,7 @@ def register_page(request):
 
     return render(request, 'home/register.html')
 
+@login_required(login_url="/login/")
 def delete_entry(request, id):
     history_entry = History.objects.get(id=id)
     amount_to_delete = history_entry.amount
@@ -99,3 +101,14 @@ def delete_entry(request, id):
         balance.save()
     
     return redirect('/')
+
+def history(request):
+    queryset = History.objects.all().order_by('timestamp')
+        # Create a dictionary to store histories by month
+    histories_by_month = {}
+    for history in queryset:
+        month = history.timestamp.strftime('%B %Y')  # Format: Month Year
+        histories_by_month.setdefault(month, []).append(history)
+
+    context = {'histories_by_month': histories_by_month}
+    return render(request, 'home/history.html', context)

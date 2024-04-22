@@ -351,4 +351,14 @@ button[type="submit"]:hover {
   color: #0056b3;
 }
 
+.historyul {
+  list-style: none; /* Remove default list styles */
+  display: contents;
+  margin-top: 30000px;
+  padding-top: 50px;
+}
 
+.historyli {
+  margin-bottom: 10px;
+  display: contents;
+}
